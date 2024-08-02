@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'dialog.dart';
+import 'home.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +14,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      routes: {
+        '/home' : (context) => HomeScreen(),
+        '/history': (context) => HomePage()
+      },
+      home: HomeScreen(),
     );
   }
 }
@@ -24,49 +30,39 @@ class HomePage extends StatefulWidget {
 
 class _TextFieldDockedPageState extends State<HomePage> {
   TextEditingController _controller = TextEditingController();
-  String _displayText = '';
 
-  void _updateText() {
-    setState(() {
-      _displayText = _controller.text;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scam Detectora'),
+        title: Text('Scam Detector'),
       ),
+      floatingActionButton: IconButton(
+        icon: const Icon(Icons.add),
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) => const FormDialog(),
+          );
+        },
+        ),
       body: Column(
         children: <Widget>[
           Expanded(
             child: Center(
-              child: Text(
-                'You entered: $_displayText',
-                style: TextStyle(fontSize: 18),
-              ),
+              child: ListView.builder(
+                itemBuilder: (BuildContext context, int index){
+                  return const ListTile(
+                    title: Text("user123456789"),
+                    subtitle: Text("User user123456789 was found to be a scammer"),
+                    trailing: Text("12/12/2020"),
+                  );
+                }
+                )
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: PreferredSize(
-              preferredSize: Size.fromHeight(30),
-              child: Row(
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[
-                TextField(
-                  controller: _controller,
-                  decoration: InputDecoration(
-                    labelText: 'Enter skeptical text',
-                    border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(15))),
-                  ),
-                ),
-                IconButton(onPressed: ()=>{}, icon: Icon(Icons.send)),
-              ],
-            ),,
-            )
-          ),
+          
         ],
       ),
     );
