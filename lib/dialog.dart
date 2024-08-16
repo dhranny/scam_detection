@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'client.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'result.dart';
 
 class FormDialog extends StatefulWidget {
   const FormDialog({super.key});
@@ -14,31 +14,27 @@ class _FormDialogState extends State<FormDialog> {
   final _nameController = TextEditingController();
   final _longTextController = TextEditingController();
 
-  void sendEmail() async {
-    final Uri emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'dhrannydan2018@gmail.com',
-      queryParameters: {
-        'subject': 'Scam Report',
-        'body': 'Please describe the scam you encountered.'
-      },
-    );
-
-    if (await canLaunchUrl(emailLaunchUri)) {
-      await launchUrl(emailLaunchUri);
-    } else {
-      print('Could not launch $emailLaunchUri');
-    }
-  }
 
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
       String name = _nameController.text;
       String longText = _longTextController.text;
       ApiService serv = ApiService();
-      await serv.test(name, longText);
-      sendEmail();
-      Navigator.of(context).pop();
+      String result = await serv.test(name, longText);
+      SentimentResultScreen screen = SentimentResultScreen(
+        isPositive: int.parse(result) == 0 ? true : false, 
+        resultText: createText(int.parse(result)),
+        );
+      Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
+    }
+  }
+  
+  String createText(int result){
+    if(result == 0){
+      return 'The result of the test shows that the user is not a scammer';
+    }
+    else{
+      return 'The result of the test shows that the user is a scammer';
     }
   }
 

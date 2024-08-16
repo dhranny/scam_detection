@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'lists.dart';
 import 'home.dart';
+import 'result.dart';
 import 'client.dart';
 
 class Histor with ChangeNotifier {

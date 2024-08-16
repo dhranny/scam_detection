@@ -38,8 +38,8 @@ class _HistoryState extends State<HistoryList> {
                   return ListTile(
                     title: Text(historyProvider.history[index].name),
                     subtitle:
-                        Text(historyProvider.history[index].name),
-                    trailing: Text(historyProvider.history[index].name),
+                        Text(historyProvider.history[index].text),
+                    trailing: Text(historyProvider.history[index].date),
                   );
                 },
                 itemCount: historyProvider.history.length,
