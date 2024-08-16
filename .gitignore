@@ -30,7 +30,16 @@ migrate_working_dir/
 .packages
 .pub-cache/
 .pub/
-/build/
+/build/app/generated/
+/build/app/intermediates/
+/build/app/tmp/
+/build/e6ef23a68ec48ebfc362827442e20fb2/
+/build/flutter_assets/
+/build/flutter_email_sender/
+/build/kotlin/
+/build/url_launcher_android/
+/build/574fc2377ef17b67df2769d9e7907272.cache.dill.track.dill
+
 
 # Symbolication related
 app.*.symbols
