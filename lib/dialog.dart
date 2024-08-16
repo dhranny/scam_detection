@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'client.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FormDialog extends StatefulWidget {
   const FormDialog({super.key});
@@ -12,14 +14,30 @@ class _FormDialogState extends State<FormDialog> {
   final _nameController = TextEditingController();
   final _longTextController = TextEditingController();
 
-  void _submitForm() {
+  void sendEmail() async {
+    final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'dhrannydan2018@gmail.com',
+      queryParameters: {
+        'subject': 'Scam Report',
+        'body': 'Please describe the scam you encountered.'
+      },
+    );
+
+    if (await canLaunchUrl(emailLaunchUri)) {
+      await launchUrl(emailLaunchUri);
+    } else {
+      print('Could not launch $emailLaunchUri');
+    }
+  }
+
+  void _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      // Handle form submission here
       String name = _nameController.text;
       String longText = _longTextController.text;
-      // Do something with the collected data
-      print('Name: $name, Long Text: $longText');
-      // Close the dialog
+      ApiService serv = ApiService();
+      await serv.test(name, longText);
+      sendEmail();
       Navigator.of(context).pop();
     }
   }
@@ -30,28 +48,30 @@ class _FormDialogState extends State<FormDialog> {
       title: const Text('Enter Details'),
       content: SingleChildScrollView(
         child: Form(
-        key: _formKey,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextFormField(
-              controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Suspects Username'),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter a username';
-                }
-                return null;
-              },
-            ),
-            TextFormField(
-              controller: _longTextController,
-              maxLines: 5,
-              decoration: const InputDecoration(labelText: 'Paste the suspected text'),
-            ),
-          ],
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: _nameController,
+                decoration:
+                    const InputDecoration(labelText: 'Suspects Username'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter a username';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _longTextController,
+                maxLines: 5,
+                decoration: const InputDecoration(
+                    labelText: 'Paste the suspected text'),
+              ),
+            ],
+          ),
         ),
-      ),
       ),
       actions: [
         TextButton(

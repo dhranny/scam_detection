@@ -1,70 +1,41 @@
 import 'package:flutter/material.dart';
-import 'dialog.dart';
+import 'package:provider/provider.dart';
+import 'lists.dart';
 import 'home.dart';
+import 'client.dart';
+
+class Histor with ChangeNotifier {
+  List<History> _history = [];
+
+  List<History> get history => _history;
+
+  void setHistory(List<History> history) {
+    _history = history;
+    notifyListeners();
+  }
+}
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => Histor(),
+      child: MyApp())
+    );
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Text Field Docked',
+      title: 'Scam Detector',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       routes: {
-        '/home' : (context) => HomeScreen(),
-        '/history': (context) => HomePage()
+        '/home': (context) => HomeScreen(),
+        '/history': (context) => HistoryList()
       },
       home: HomeScreen(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  @override
-  _TextFieldDockedPageState createState() => _TextFieldDockedPageState();
-}
-
-class _TextFieldDockedPageState extends State<HomePage> {
-  TextEditingController _controller = TextEditingController();
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Scam Detector'),
-      ),
-      floatingActionButton: IconButton(
-        icon: const Icon(Icons.add),
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => const FormDialog(),
-          );
-        },
-        ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            child: Center(
-              child: ListView.builder(
-                itemBuilder: (BuildContext context, int index){
-                  return const ListTile(
-                    title: Text("user123456789"),
-                    subtitle: Text("User user123456789 was found to be a scammer"),
-                    trailing: Text("12/12/2020"),
-                  );
-                }
-                )
-            ),
-          ),
-          
-        ],
-      ),
     );
   }
 }
