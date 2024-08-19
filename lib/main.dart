@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'lists.dart';
 import 'home.dart';
-import 'result.dart';
+import 'splash.dart';
 import 'client.dart';
 
 class Histor with ChangeNotifier {
@@ -17,11 +17,7 @@ class Histor with ChangeNotifier {
 }
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => Histor(),
-      child: MyApp())
-    );
+  runApp(ChangeNotifierProvider(create: (context) => Histor(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +32,7 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/history': (context) => HistoryList()
       },
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
