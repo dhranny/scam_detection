@@ -25,3 +25,7 @@ flutter_icons:
   image_path: "assets/pngegg.png"
 flutter:
   uses-material-design: true
+  fonts:
+    - family: CustomFontFamily
+      fonts:
+        - asset: assets/sf-pro-display/SFPRODISPLAYBOLD.OTF

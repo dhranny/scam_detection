@@ -13,7 +13,7 @@ class SentimentResultScreen extends StatelessWidget {
   void sendEmail() async {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
-      path: 'dhrannydan2018@gmail.com',
+      path: 'pressforabuja@police.gov.ng',
       queryParameters: {
         'subject': 'Scam Report',
         'body': 'Please describe the scam you encountered.'
@@ -63,7 +63,6 @@ class SentimentResultScreen extends StatelessWidget {
                   Navigator.pop(context);
                 }else{
                   sendEmail();
-                  Navigator.pop(context);
                 }
               },
               style: ElevatedButton.styleFrom(

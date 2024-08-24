@@ -34,6 +34,36 @@ class ApiService {
       throw Exception('The testing failed');
     }
   }
+
+  Future<bool> login(String username, String password) async {
+    final response = await http.post(Uri.parse('$baseUrl/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{"username": username, "name": password}));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      // Handle error
+      return false;
+    }
+  }
+  
+  Future<bool> signup(String username, String password) async {
+    final response = await http.post(Uri.parse('$baseUrl/signup'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{"username": username, "name": password}));
+
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      // Handle error
+      return false;
+    }
+  }
   // Implement other CRUD operations here
 }
 

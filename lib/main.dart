@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'lists.dart';
+import 'login.dart';
+import 'signup.dart';
 import 'home.dart';
 import 'splash.dart';
 import 'client.dart';
@@ -25,14 +27,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Scam Detector',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        primaryColor: Colors.blue
       ),
       routes: {
         '/home': (context) => HomeScreen(),
-        '/history': (context) => HistoryList()
+        '/history': (context) => HistoryList(),
+        '/login': (context) => LoginScreen(),
+        '/signup': (context) => SignupScreen()
       },
-      home: SplashScreen(),
+      home: LoginScreen(),
     );
   }
 }
