@@ -33,8 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 20,
             ),
             const Text('Login to your account', style: TextStyle(fontSize: 22)),
-            SizedBox(height: 15.0),
-            const Text('Email'),
+            SizedBox(height: 30.0),
             SizedBox(
               height: 60.0,
               child: TextFormField(
@@ -45,22 +44,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 ),
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
               ),
             ),
-            SizedBox(height: 10.0),
-            const Text('Password'),
+            SizedBox(height: 25.0),
             TextFormField(
-              controller: _usernameController,
+              controller: _passwordController,
               decoration: const InputDecoration(
-                labelText: 'Enter yor email address',
+                labelText: 'Enter your password',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
               ),
@@ -75,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             Container(
               width: double.infinity,
@@ -96,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   String password = _passwordController.text;
                   bool result = await apiServ.login(username, password);
                   if (result) {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Navigator.pushReplacementNamed(context, '/home');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Unable to login')),
@@ -116,7 +106,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text("Don't have an account?"),
                 SizedBox(width: 4.0),
                 GestureDetector(
-                  onTap: () => {},
+                  onTap: () => {
+                    Navigator.pushNamed(context, '/signup')
+                  },
                   child: Text(
                     'Sign Up',
                     style: TextStyle(

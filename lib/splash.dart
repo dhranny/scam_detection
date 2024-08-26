@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'login.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,9 +12,9 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(milliseconds: 1800), () {
+    Timer(Duration(milliseconds: 3000), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (_) => HomeScreen()));
+          context, MaterialPageRoute(builder: (_) => LoginScreen()));
     });
   }
 
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           color: Theme.of(context).primaryColor,
-          child: const Image(image: AssetImage('assets/pngegg.png')),
+          child: const Text('Scam Detector'),
         ));
   }
 }

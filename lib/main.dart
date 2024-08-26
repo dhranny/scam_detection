@@ -5,6 +5,7 @@ import 'login.dart';
 import 'signup.dart';
 import 'home.dart';
 import 'splash.dart';
+import 'evidence.dart';
 import 'client.dart';
 
 class Histor with ChangeNotifier {
@@ -29,17 +30,17 @@ class MyApp extends StatelessWidget {
       title: 'Scam Detector',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.white,
-        primaryColor: Colors.blue
-      ),
+          primarySwatch: Colors.blue,
+          scaffoldBackgroundColor: Colors.white,
+          primaryColor: Colors.blue),
       routes: {
         '/home': (context) => HomeScreen(),
         '/history': (context) => HistoryList(),
         '/login': (context) => LoginScreen(),
-        '/signup': (context) => SignupScreen()
+        '/signup': (context) => SignupScreen(),
+        '/evidence': (context) => EvidenceCollectionScreen()
       },
-      home: LoginScreen(),
+      home: SplashScreen(),
     );
   }
 }

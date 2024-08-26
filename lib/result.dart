@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-
 class SentimentResultScreen extends StatelessWidget {
   final bool isPositive; // Pass true if sentiment is positive, false if negative
   final String resultText; // Text that describes the result
@@ -10,23 +8,7 @@ class SentimentResultScreen extends StatelessWidget {
 
 
 
-  void sendEmail() async {
-    final Uri emailLaunchUri = Uri(
-      scheme: 'mailto',
-      path: 'pressforabuja@police.gov.ng',
-      queryParameters: {
-        'subject': 'Scam Report',
-        'body': 'Please describe the scam you encountered.'
-      },
-    );
-
-    if (await canLaunchUrl(emailLaunchUri)) {
-      await launchUrl(emailLaunchUri);
-    } else {
-      print('Could not launch $emailLaunchUri');
-    }
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +44,7 @@ class SentimentResultScreen extends StatelessWidget {
                 if(isPositive){
                   Navigator.pop(context);
                 }else{
-                  sendEmail();
+                  Navigator.pushNamed(context, '/evidence');
                 }
               },
               style: ElevatedButton.styleFrom(

@@ -32,41 +32,31 @@ class _SignupScreenState extends State<SignupScreen> {
               height: 20,
             ),
             const Text('Login to your account', style: TextStyle(fontSize: 22)),
-            SizedBox(height: 15.0),
-            const Text('Email'),
+            SizedBox(height: 30.0),
             SizedBox(
               height: 60.0,
               child: TextFormField(
                 controller: _usernameController,
                 decoration: const InputDecoration(
-                  labelText: 'Enter yor email address',
+                  labelText: 'Enter your email address',
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0))),
                 ),
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter your email';
-                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
               ),
             ),
-            SizedBox(height: 10.0),
-            const Text('Password'),
+            SizedBox(height: 25.0),
             TextFormField(
-              controller: _usernameController,
+              controller: _passwordController,
               decoration: const InputDecoration(
-                labelText: 'Enter yor email address',
+                labelText: 'Enter your password',
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(8.0))),
               ),
               obscureText: true,
             ),
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
             Container(
               width: double.infinity,
@@ -96,24 +86,6 @@ class _SignupScreenState extends State<SignupScreen> {
                   style: TextStyle(color: Colors.white),
                 ),
               ),
-            ),
-            SizedBox(height: 5.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Don't have an account?"),
-                SizedBox(width: 4.0),
-                GestureDetector(
-                  onTap: () => {},
-                  child: Text(
-                    'Sign Up',
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ],
             ),
           ],
         ),

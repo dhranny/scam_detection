@@ -40,7 +40,7 @@ class ApiService {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, String>{"username": username, "name": password}));
+        body: jsonEncode(<String, String>{"username": username, "password": password}));
 
     if (response.statusCode == 200) {
       return true;
@@ -55,7 +55,7 @@ class ApiService {
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode(<String, String>{"username": username, "name": password}));
+        body: jsonEncode(<String, String>{"username": username, "password": password}));
 
     if (response.statusCode == 200) {
       return true;
