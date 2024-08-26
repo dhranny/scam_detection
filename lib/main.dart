@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => SignupScreen(),
         '/evidence': (context) => EvidenceCollectionScreen()
       },
-      home: EvidenceCollectionScreen(),
+      home: SplashScreen(),
     );
   }
 }
