@@ -4,43 +4,47 @@ import 'package:url_launcher/url_launcher.dart';
 
 class EvidenceCollectionScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
-  void sendEmail() async {
+  TextEditingController platform = TextEditingController();
+  TextEditingController date = TextEditingController();
+  TextEditingController personal = TextEditingController();
+  TextEditingController personalInfo = TextEditingController();
+  TextEditingController specific = TextEditingController();
+  TextEditingController amount = TextEditingController();
+  TextEditingController transactions = TextEditingController();
+  TextEditingController falsePromises = TextEditingController();
+  TextEditingController profile = TextEditingController();
+  TextEditingController aliases = TextEditingController();
+  TextEditingController inconsistencies = TextEditingController();
+  TextEditingController unusual = TextEditingController();
+  TextEditingController aggressive = TextEditingController();
+  TextEditingController illegal = TextEditingController();
+  TextEditingController otherUsers = TextEditingController();
+  TextEditingController actions = TextEditingController();
+  TextEditingController additional = TextEditingController();
+
+  void sendEmail(BuildContext context) async {
     final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: 'pressforabuja@police.gov.ng',
       queryParameters: {
         'subject': 'Scam Report',
-        'body': 'Please describe the scam you encountered.'
+        'body':
+            'This scammer engaged me on  ${platform.text}. I shared my personal information with them. ${amount.text} as gone between'
+            +'us as they promised that they will ${falsePromises.text}.'
       },
     );
 
     if (await canLaunchUrl(emailLaunchUri)) {
       await launchUrl(emailLaunchUri);
     } else {
-      print('Could not launch $emailLaunchUri');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Processing Data')),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController platform = TextEditingController();
-    TextEditingController date = TextEditingController();
-    TextEditingController personal = TextEditingController();
-    TextEditingController personalInfo = TextEditingController();
-    TextEditingController specific = TextEditingController();
-    TextEditingController amount = TextEditingController();
-    TextEditingController transactions = TextEditingController();
-    TextEditingController falsePromises = TextEditingController();
-    TextEditingController profile = TextEditingController();
-    TextEditingController aliases = TextEditingController();
-    TextEditingController inconsistencies = TextEditingController();
-    TextEditingController unusual = TextEditingController();
-    TextEditingController aggressive = TextEditingController();
-    TextEditingController illegal = TextEditingController();
-    TextEditingController otherUsers = TextEditingController();
-    TextEditingController actions = TextEditingController();
-    TextEditingController additional = TextEditingController();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Gather Evidence'),
@@ -183,7 +187,7 @@ class EvidenceCollectionScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        sendEmail();
+                        sendEmail(context);
                       }
                     },
                     child: Text('Submit Evidence'),

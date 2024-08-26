@@ -31,7 +31,7 @@ class _SignupScreenState extends State<SignupScreen> {
             SizedBox(
               height: 20,
             ),
-            const Text('Login to your account', style: TextStyle(fontSize: 22)),
+            const Text('Sigup to Scam Detector', style: TextStyle(fontSize: 22)),
             SizedBox(height: 30.0),
             SizedBox(
               height: 60.0,
@@ -74,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   String password = _passwordController.text;
                   bool result = await apiServ.signup(username, password);
                   if (result) {
-                    Navigator.pushReplacementNamed(context, '/login');
+                    Navigator.pop(context);
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Processing Data')),
@@ -82,7 +82,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   }
                 },
                 child: Text(
-                  'Login',
+                  'SignUp',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
