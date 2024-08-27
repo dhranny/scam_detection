@@ -47,7 +47,8 @@ class EvidenceCollectionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Gather Evidence'),
+        backgroundColor: Colors.blue,
+        title: Text('Gather Evidence', style: TextStyle(color: Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -190,7 +191,7 @@ class EvidenceCollectionScreen extends StatelessWidget {
                         sendEmail(context);
                       }
                     },
-                    child: Text('Submit Evidence'),
+                    child: Text('Submit Evidence', style: TextStyle(color: Colors.white),),
                     style: ElevatedButton.styleFrom(
                       padding:
                           EdgeInsets.symmetric(horizontal: 50, vertical: 15),

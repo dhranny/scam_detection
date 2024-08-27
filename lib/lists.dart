@@ -18,7 +18,8 @@ class _HistoryState extends State<HistoryList> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scam Detector'),
+        backgroundColor: Colors.blue,
+        title: Text('Scam Detector', style: TextStyle(color: Colors.white)),
       ),
       floatingActionButton: IconButton(
         icon: const Icon(Icons.add),

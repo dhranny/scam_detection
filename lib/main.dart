@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: Colors.white,
           primaryColor: Colors.blue),
+          color: Colors.blue,
       routes: {
         '/home': (context) => HomeScreen(),
         '/history': (context) => HistoryList(),

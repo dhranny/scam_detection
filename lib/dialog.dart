@@ -41,6 +41,7 @@ class _FormDialogState extends State<FormDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.white,
       title: const Text('Enter Details'),
       content: SingleChildScrollView(
         child: Form(

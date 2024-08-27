@@ -6,7 +6,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Scam Detector'),
+        backgroundColor: Theme.of(context).primaryColor,
+        title: Text('Scam Detector', style: TextStyle(color: Colors.white)),
       ),
       drawer: Drawer(
         child: ListView(
@@ -65,13 +66,17 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3944169768.
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
                 onPressed: () {
                   showDialog(
                     context: context,
                     builder: (BuildContext context) => const FormDialog(),
                   );
                 },
-                child: Text('Start Analyzing'),
+                child: Text('Start Analyzing', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

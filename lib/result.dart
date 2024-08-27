@@ -13,7 +13,8 @@ class SentimentResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sentiment Analysis Result'),
+        backgroundColor: Colors.blue,
+        title: Text('Sentiment Analysis Result', style: TextStyle(color: Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
